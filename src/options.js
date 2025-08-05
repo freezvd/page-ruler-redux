@@ -1,14 +1,6 @@
 (function() {
 
 	/*
-	 * Track pageview
-	 */
-	chrome.runtime.sendMessage({
-		action:	'trackPageview',
-		page:	'options.html'
-	});
-
-	/*
 	 * Locale
 	 */
 	var elements = document.getElementsByTagName('*');
@@ -38,24 +30,10 @@
 
 		// disabling option
 		if (!this.checked) {
-
-			// track event before saving the setting so we can see how many people disable it
-			chrome.runtime.sendMessage(
-				{
-					action:	'trackEvent',
-					args:	['Settings', 'Statistics', '0']
-				},
-				function() {
-
-					console.log('disabling statistics');
-
-					// save setting
-					chrome.storage.sync.set({
-						'statistics': false
-					});
-
-				}
-			);
+		// save setting
+			chrome.storage.sync.set({
+				'statistics': false
+			});
 		}
 		// enabling option
 		else {
@@ -65,15 +43,6 @@
 			// save setting
 			chrome.storage.sync.set({
 				'statistics': true
-			}, function() {
-
-				// send tracking after the setting is saved so it is sent
-				chrome.runtime.sendMessage(
-					{
-						action:	'trackEvent',
-						args:	['Settings', 'Statistics', '1']
-					}
-				)
 			});
 		}
 
@@ -102,13 +71,6 @@
 				'hide_update_tab': true
 			});
 
-			// send tracking after the setting is saved so it is sent
-			chrome.runtime.sendMessage(
-				{
-					action:	'trackEvent',
-					args:	['Settings', 'HideUpdateTab', '1']
-				}
-			);
 
 		}
 		else {
@@ -120,13 +82,6 @@
 				'hide_update_tab': false
 			});
 
-			// send tracking after the setting is saved so it is sent
-			chrome.runtime.sendMessage(
-				{
-					action:	'trackEvent',
-					args:	['Settings', 'HideUpdateTab', '0']
-				}
-			);
 
 		}
 

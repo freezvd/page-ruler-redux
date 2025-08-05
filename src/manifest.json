@@ -1,66 +1,62 @@
-	{
-
-	"manifest_version":  2,
-
-	"name": "__MSG_extName__",
-	"short_name": "__MSG_extShortName__",
-	"description": "__MSG_extDescription__",
+{
+	"manifest_version": 3,
+	"name": "Page Ruler Redux",
+	"description": "Page Ruler Redux is an extension for Google Chrome allowing you to draw a ruler to get pixel dimensions and positioning, and measure elements on any web page.",
 	"version": "1.1.0",
-
 	"default_locale": "en",
-
-	"background":  {
-		"scripts":  [
-			"background.js"
-		],
-		"persistent": false
+	"background": {
+		"service_worker": "background.js"
 	},
-
 	"options_page": "options.html",
-
 	"permissions": [
 		"activeTab",
 		"tabs",
-		"storage"
+		"storage",
+		"contextMenus",
+		"scripting"
 	],
-
+	"host_permissions": [
+		"http://*/*",
+		"https://*/*"
+	],
 	"web_accessible_resources": [
-		"content.css",
-		"images/close.png",
-		"images/help.png",
-		"images/element-mode-toggle.png",
-		"images/arrow-up.png",
-		"images/arrow-down.png",
-		"images/arrow-left.png",
-		"images/arrow-right.png",
-		"images/dock-top.png",
-		"images/dock-bottom.png",
-		"images/help-white.png",
-		"images/crosshair.png"
+		{
+			"resources": [
+				"content.js",
+				"content.css",
+				"images/close.png",
+				"images/help.png",
+				"images/element-mode-toggle.png",
+				"images/arrow-up.png",
+				"images/arrow-down.png",
+				"images/arrow-left.png",
+				"images/arrow-right.png",
+				"images/dock-top.png",
+				"images/dock-bottom.png",
+				"images/help-white.png",
+				"images/crosshair.png"
+			],
+			"matches": ["<all_urls>"]
+		}
 	],
-
-	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-
-	"browser_action": {
-		"default_icon":   {
+	"action": {
+		"default_icon": {
 			"19": "images/19/browser_action.png",
 			"38": "images/38/browser_action.png"
 		},
-		"default_title":  "__MSG_extName__"
+		"default_title": "Page Ruler Redux"
 	},
-
 	"icons": {
-		"16":	"icons/icon16.png",
-		"48":	"icons/icon48.png",
-		"128":	"icons/icon128.png"
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
 	},
-
 	"commands": {
-		"_execute_browser_action": {
+		"_execute_action": {
 			"suggested_key": {
 				"default": "Alt+P"
-			}
+			},
+			"description": "Toggle Page Ruler Redux"
 		}
 	}
-
 }
