@@ -115,9 +115,7 @@ const PageRuler = {
 
 // chrome.action.onClicked.addListener(PageRuler.browserAction);
 const executeOnInit = () => {
-	document.body.style.border = "10px solid green";
-	const screenshot = new Image();
-	const canvas = document.createElement("canvas");
+	// document.body.style.border = "10px solid green";
 
 	chrome.runtime.sendMessage({
 		action: "loadtest",
